@@ -11,6 +11,7 @@ pygame.init()
 
 screen=pygame.display.set_mode((config.Screen_width, config.Screen_height)) #Cria uma janela e seta seu tamanho
 clock=pygame.time.Clock() #Cria o objeto Clock para controlar a taxa de atualização
+column_event=pygame.USEREVENT
 running=True
 
 assets.load_sprites() #Carrega os sprites
@@ -19,14 +20,18 @@ sprites=pygame.sprite.LayeredUpdates() #Cria uma classe que serve para gerenciar
 
 Background(0, sprites) #Adiciona o "background" ao grupo de sprites e setando o canto superior esquerdo do sprite no canto superior esquerdo 
 Background(1, sprites) #Adiciona o "background" ao grupo de sprites e setando o canto superior esquerdo do sprite no canto superior direito
-Column(0, sprites)
 Floor(0, sprites)
 Floor(1, sprites)
+
+pygame.time.set_timer(column_event, 1500)
+
 #Loop principal do jogo
 while running:
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             running=False
+        if event.type==column_event:
+            Column(sprites)
 
     screen.fill("black") #Preenche a tela de preto
     sprites.draw(screen) #Coloca o sprite "background" na tela
