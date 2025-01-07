@@ -10,7 +10,7 @@ class Floor(pygame.sprite.Sprite):
         self._layer=Layer.FLOOR #Seta a profundidade
         self.image=assets.get_sprite("floor") #Guarda o sprite "floor" no self.image
         self.rect=self.image.get_rect(bottomleft=(config.Screen_width*index, config.Screen_height)) #Cria um retângulo com o sprite criado, e posiciona na tela
-        self.mask=pygame.mask.from_surface(self.image)
+        self.mask=pygame.mask.from_surface(self.image) #Cria uma máscara com os pixels não invisíveis do chão
         
         super().__init__(*groups)
     
