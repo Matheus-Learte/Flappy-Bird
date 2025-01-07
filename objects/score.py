@@ -17,7 +17,7 @@ class Score(pygame.sprite.Sprite):
 
     #Função que atualiza a pontuação
     def atualiza(self):
-        self.value+=99 #Soma mais 1 ao valor da pontuação
+        self.value+=1 #Soma mais 1 ao valor da pontuação
         str_value= str(self.value) #Cria uma variável auxiliar com o valor da pontuação em formato de string
 
         self.img=[] #Inicializa uma lista 'self.img' para guardar os sprites os numeros da pontuação
