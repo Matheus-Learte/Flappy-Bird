@@ -27,6 +27,9 @@ class Column(pygame.sprite.Sprite):
         self.image.blit(self.down_tube, self.down_tube_rect) #Coloca o tubo de baixo dentro da superficie
         self.image.blit(self.up_tube, self.up_tube_rect) #Coloca o tubo de cima dentro da superficie
         self.rect=self.image.get_rect(midleft=(config.Screen_width,random.uniform(min_y, max_y))) #Cria um retângulo com essa superfície e posiciona na tela
+        self.mask=pygame.mask.from_surface(self.image) #Mascara que envolve cada um dos pixels não invisiveis da superficie
+
+        self.passou=True
 
         super().__init__(*groups)
 
@@ -36,3 +39,10 @@ class Column(pygame.sprite.Sprite):
 
         if self.rect.right<=0: #Apaga o objeto criado quando ele sair da tela 
             self.kill()
+
+    #Função que verifica se o pássaro passou pelo cano
+    def passed(self):
+        if self.rect.x<50 and self.passou: #Checa se o cano está atrás do sprite do pássaro e se o pássaro ja não passado esse obstáculo
+            self.passou=False #Seta a variavel que guarda se o pássaro ja passou pelo obstáculo como 'False'
+            return True
+        return False

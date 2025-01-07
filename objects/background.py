@@ -7,7 +7,7 @@ from layer import Layer #Importa a classe que define a ordem dos sprites
 class Background(pygame.sprite.Sprite):
     #Função construtora
     def __init__(self, index, *groups):
-        self._layer=Layer.BACKGROUND
+        self._layer=Layer.BACKGROUND #Seta a profundidade
         self.image=assets.get_sprite("background") #Guarda o sprite "background" no self.image
         self.rect=self.image.get_rect(topleft=(config.Screen_width*index ,0)) #Cria um retângulo com o sprite criado, e posiciona na tela
 
